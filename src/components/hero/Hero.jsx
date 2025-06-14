@@ -1,4 +1,4 @@
-import { Canvas } from "@react-three/fiber";
+eimport { Canvas } from "@react-three/fiber";
 import "./hero.css";
 import Speech from "./Speech";
 import { motion } from "motion/react";
@@ -44,9 +44,9 @@ const Hero = () => {
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1 }}
-          className="hTitle"
+          className="Title"
         >
-          Hey There,
+          Hey,
           <br />
           <span>I'm Raghav!</span>
         </motion.h1>
