@@ -8,14 +8,14 @@ const items = [
     img: "/p1.png",
     title: "LumiVolt- Electricity Consumption Tracker",
     desc: "A smart energy management system for optimizing power usage across multi-floor buildings. The system was built using Python and integrated with Arduino for real-time data processing, algorithmic energy balancing, and efficient solar-grid interaction.",
-    link: "/",
+    link: "https://github.com/theraghavaggarwal/LumiVolt/tree/main",
   },
   {
     id: 2,
     img: "/p2.png",
     title: "Student Database Management System",
     desc: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure laboriosam tempore consectetur, atque maiores culpa quia, repellat id, dicta esse fugit neque voluptatem provident itaque voluptates minima. Repudiandae, provident hic.",
-    link: "/",
+    link: "https://github.com/theraghavaggarwal/Mern-Student-Management",
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ const items = [
     img: "/p4.png",
     title: "Client Billing System",
     desc: "Developed using Core Java and Java Swing for managing billing, payment tracking, and invoice generation. Enabled efficient financial operations with secure user roles and real-time reporting.",
-    link: "/",
+    link: "https://github.com/theraghavaggarwal/software-project",
   },
   {
     id: 5,
