@@ -59,18 +59,18 @@ const progressVariants = {
 };
 
 const services = [
-  { id: 1, img: "/service2.png", title: "Software Development", progress: 70 },
-  { id: 2, img: "/service1.png", title: "Web Development", progress: 60 },
-  { id: 3, img: "/service3.png", title: "IoT Development", progress: 40 },
-  { id: 4, img: "/python.png", title: "Python", progress: 80 },
-  { id: 5, img: "/cpp.png", title: "C++", progress: 90 },
-  { id: 6, img: "/django.png", title: "Django", progress: 75 },
-  { id: 7, img: "/react.png", title: "React", progress: 85 },
-  { id: 8, img: "/node.png", title: "Node.js", progress: 75 },
-  { id: 9, img: "/flutter.png", title: "Flutter", progress: 65 },
-  { id: 10, img: "/firebase.png", title: "Firebase", progress: 70 },
-  { id: 11, img: "/aws.png", title: "AWS", progress: 50 },
-  { id: 12, img: "/git.png", title: "Git & GitHub", progress: 80 },
+  { id: 1, img: "/service2.png", title: "Java", progress: 80 },
+  { id: 2, img: "/service1.png", title: "Python", progress: 80 },
+  { id: 3, img: "/service3.png", title: "C/C++", progress: 60 },
+  { id: 4, img: "/python.png", title: "HTML", progress: 80 },
+  { id: 5, img: "/cpp.png", title: "CSS", progress: 80 },
+  { id: 6, img: "/django.png", title: "JavaScript", progress: 70 },
+  { id: 7, img: "/react.png", title: "React", progress: 50 },
+  { id: 8, img: "/node.png", title: "Node.js", progress: 50 },
+  { id: 9, img: "/flutter.png", title: "MongoDB", progress: 50 },
+  { id: 10, img: "/firebase.png", title: "SQL", progress: 70 },
+  { id: 11, img: "/aws.png", title: "Arduino Programming", progress: 60 },
+  { id: 12, img: "/git.png", title: "Iot Model Building", progress: 60 },
 ];
 
 const Services = () => {
