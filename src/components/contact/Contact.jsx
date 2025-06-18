@@ -29,35 +29,53 @@ const Contact = () => {
   const sendEmail = (e) => {
     e.preventDefault();
 
+    const userData = {
+      user_username: form.current.user_username.value,
+      user_email: form.current.user_email.value,
+      user_message: form.current.user_message.value,
+    };
+
+    const serviceID = "service_123"; // replace with your actual service ID
+    const templateToMeID = "template_jbwisc5"; // replace with your actual template for admin
+    const templateThankYouID = "template_jbwisc5"; // replace with your actual thank-you template
+    const publicKey = "iHmdUoAQYMkFRbMue"; // replace with your actual public key
+
+    // Send to yourself
     emailjs
-      .sendForm(
-        import.meta.env.VITE_SERVICE_ID,
-        import.meta.env.VITE_TEMPLATE_ID,
-        form.current,
-        {
-          publicKey: import.meta.env.VITE_PUBLIC_KEY,
-        }
-      )
-      .then(
-        () => {
-          setSuccess(true);
-          setError(false);
-        },
-        (error) => {
-          console.log(error);
-          setError(true);
-          setSuccess(false);
-        }
-      );
+      .sendForm(serviceID, templateToMeID, form.current, {
+        publicKey: publicKey,
+      })
+      .then(() => {
+        // Send thank-you to user
+        emailjs
+          .send(serviceID, templateThankYouID, userData, {
+            publicKey: publicKey,
+          })
+          .then(() => {
+            setSuccess(true);
+            setError(false);
+          })
+          .catch((err) => {
+            console.error("Thank you email failed:", err);
+            setError(true);
+            setSuccess(false);
+          });
+      })
+      .catch((err) => {
+        console.error("Send to admin failed:", err);
+        setError(true);
+        setSuccess(false);
+      });
   };
 
   const isInView = useInView(ref, { margin: "-200px" });
 
   return (
-    <div className="contact" ref={ref} onSubmit={sendEmail}>
+    <div className="contact" ref={ref}>
       <div className="cSection">
         <motion.form
           ref={form}
+          onSubmit={sendEmail}
           variants={listVariant}
           animate={isInView ? "animate" : "initial"}
         >
@@ -66,15 +84,11 @@ const Contact = () => {
           </motion.h1>
           <motion.div variants={listVariant} className="formItem">
             <label>Name</label>
-            <input type="text" name="user_username" />
+            <input type="text" name="user_username" required />
           </motion.div>
           <motion.div variants={listVariant} className="formItem">
             <label>Email</label>
-            <input
-              type="email"
-              name="user_email"
-              
-            />
+            <input type="email" name="user_email" required />
           </motion.div>
           <motion.div variants={listVariant} className="formItem">
             <label>Message</label>
@@ -82,16 +96,19 @@ const Contact = () => {
               rows={10}
               name="user_message"
               placeholder="Write your message..."
+              required
             ></textarea>
           </motion.div>
-          <motion.button variants={listVariant} className="formButton">
+          <motion.button variants={listVariant} className="formButton" type="submit">
             Send
           </motion.button>
-          {success && <span>Your message has been sent!</span>}
-          {error && <span>Something went wrong!</span>}
+          {success && <span className="successMsg">Your message has been sent!</span>}
+          {error && <span className="errorMsg">Something went wrong!</span>}
         </motion.form>
       </div>
-      <div className="cSection"><ContactSvg/></div>
+      <div className="cSection">
+        <ContactSvg />
+      </div>
     </div>
   );
 };
