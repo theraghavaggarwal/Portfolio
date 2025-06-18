@@ -34,7 +34,7 @@ const Contact = () => {
     };
 
     const serviceID = "service_123"; // replace with your actual service ID
-    const templateToMeID = "template_jbwisc5"; // replace with your actual template for admin
+    const templateToMeID = "template_r9xnwfc"; // replace with your actual template for admin
     const templateThankYouID = "template_jbwisc5"; // replace with your actual thank-you template
     const publicKey = "iHmdUoAQYMkFRbMue"; // replace with your actual public key
 
