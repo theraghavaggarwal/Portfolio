@@ -1,6 +1,6 @@
 import "./contact.css";
 import emailjs from "@emailjs/browser";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "motion/react";
 import ContactSvg from "./ContactSvg";
 
@@ -20,9 +20,7 @@ const listVariant = {
 };
 
 const Contact = () => {
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(false);
-
+  const [status, setStatus] = useState(""); // "success" | "error" | ""
   const ref = useRef();
   const form = useRef();
 
@@ -42,31 +40,35 @@ const Contact = () => {
 
     // Send to yourself
     emailjs
-      .sendForm(serviceID, templateToMeID, form.current, {
-        publicKey: publicKey,
-      })
+      .sendForm(serviceID, templateToMeID, form.current, { publicKey })
       .then(() => {
         // Send thank-you to user
         emailjs
-          .send(serviceID, templateThankYouID, userData, {
-            publicKey: publicKey,
-          })
+          .send(serviceID, templateThankYouID, userData, { publicKey })
           .then(() => {
-            setSuccess(true);
-            setError(false);
+            setStatus("success");
+            form.current.reset(); // Clear form after successful send
           })
           .catch((err) => {
             console.error("Thank you email failed:", err);
-            setError(true);
-            setSuccess(false);
+            setStatus("error");
           });
       })
       .catch((err) => {
         console.error("Send to admin failed:", err);
-        setError(true);
-        setSuccess(false);
+        setStatus("error");
       });
   };
+
+  useEffect(() => {
+    if (status === "success") {
+      alert("Thank you for your message!");
+      setStatus("");
+    } else if (status === "error") {
+      alert("Error sending message. Please try again later.");
+      setStatus("");
+    }
+  }, [status]);
 
   const isInView = useInView(ref, { margin: "-200px" });
 
@@ -82,14 +84,17 @@ const Contact = () => {
           <motion.h1 variants={listVariant} className="cTitle">
             Let's keep in touch
           </motion.h1>
+
           <motion.div variants={listVariant} className="formItem">
             <label>Name</label>
             <input type="text" name="user_username" required />
           </motion.div>
+
           <motion.div variants={listVariant} className="formItem">
             <label>Email</label>
             <input type="email" name="user_email" required />
           </motion.div>
+
           <motion.div variants={listVariant} className="formItem">
             <label>Message</label>
             <textarea
@@ -99,13 +104,17 @@ const Contact = () => {
               required
             ></textarea>
           </motion.div>
-          <motion.button variants={listVariant} className="formButton" type="submit">
+
+          <motion.button
+            variants={listVariant}
+            className="formButton"
+            type="submit"
+          >
             Send
           </motion.button>
-          {success && <span className="successMsg">Your message has been sent!</span>}
-          {error && <span className="errorMsg">Something went wrong!</span>}
         </motion.form>
       </div>
+
       <div className="cSection">
         <ContactSvg />
       </div>
