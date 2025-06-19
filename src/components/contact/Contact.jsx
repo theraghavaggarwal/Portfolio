@@ -87,12 +87,12 @@ const Contact = () => {
 
           <motion.div variants={listVariant} className="formItem">
             <label>Name</label>
-            <input type="text" name="user_username" required />
+            <input type="text" name="user_username" required placeholder="Your name" />
           </motion.div>
 
           <motion.div variants={listVariant} className="formItem">
             <label>Email</label>
-            <input type="email" name="user_email" required />
+            <input type="email" name="user_email" required placeholder="Your email"/>
           </motion.div>
 
           <motion.div variants={listVariant} className="formItem">
