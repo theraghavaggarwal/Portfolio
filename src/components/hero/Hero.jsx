@@ -117,6 +117,9 @@ const Hero = () => {
           <motion.a variants={followVariants} href="https://github.com/theraghavaggarwal">
             <img src="/GitHub.png" alt="" />
           </motion.a>
+          <motion.a variants={followVariants} href="https://leetcode.com/u/raghavaggarwal8804/">
+            <img src="https://image.pngaaa.com/427/6749427-middle.png" alt="" />
+          </motion.a>
           <motion.div variants={followVariants} className="followTextContainer">
             <div className="followText">FOLLOW ME</div>
           </motion.div>
